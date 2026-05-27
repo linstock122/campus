@@ -1,0 +1,46 @@
+<!-- 留言页 - 成员C负责 -->
+<view class="container">
+  <!-- 留言表单 -->
+  <view class="card">
+    <view class="title">发表留言</view>
+    <form bindsubmit="submitMessage">
+      <view class="form-item">
+        <text class="form-label">姓名</text>
+        <input class="form-input" name="name" placeholder="请输入姓名" value="{{form.name}}"/>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">位置</text>
+        <input class="form-input" name="location" placeholder="请输入您的位置" value="{{form.location}}"/>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">留言内容</text>
+        <textarea class="form-textarea" name="content" placeholder="请输入留言内容" value="{{form.content}}"/>
+      </view>
+      
+      <button class="btn" form-type="submit">提交留言</button>
+    </form>
+  </view>
+
+  <!-- 留言列表 -->
+  <view class="card">
+    <view class="title">留言列表</view>
+    <view class="message-list">
+      <view class="message-item" wx:for="{{messages}}" wx:key="id">
+        <view class="message-header">
+          <text class="message-name">{{item.name}}</text>
+          <text class="message-time">{{item.time}}</text>
+        </view>
+        <view class="message-location">📍 {{item.location}}</view>
+        <view class="message-content">{{item.content}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 小组介绍 -->
+  <view class="card">
+    <view class="title">关于我们</view>
+    <rich-text nodes="{{teamIntro}}"/>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+<!-- 风光设施页 - 成员B负责 -->
+<view class="container">
+  <view class="title">校园风光</view>
+  
+  <!-- 图片网格 -->
+  <view class="image-grid">
+    <view 
+      class="scenery-item {{item.isOpen ? '' : 'closed'}}" 
+      wx:for="{{sceneryList}}" 
+      wx:key="id"
+      bindtap="{{item.isOpen ? 'previewImage' : ''}}"
+      data-index="{{index}}"
+    >
+      <image src="{{item.image}}" mode="aspectFill"/>
+      <view class="scenery-info">
+        <view class="scenery-name">{{item.name}}</view>
+        <view class="scenery-status">
+          <text class="tag {{item.isOpen ? 'tag-open' : 'tag-close'}}">
+            {{item.isOpen ? '开放' : '关闭'}}
+          </text>
+        </view>
+        <view class="scenery-desc">{{item.description}}</view>
+      </view>
+    </view>
+  </view>
+</view>

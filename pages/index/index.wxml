@@ -1,0 +1,46 @@
+<!-- 首页 - 成员A负责 -->
+<view class="container">
+  <!-- 轮播图 -->
+  <swiper class="swiper" indicator-dots autoplay interval="3000" duration="500">
+    <swiper-item>
+      <image src="/images/banner1.jpg" mode="aspectFill"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/banner2.jpg" mode="aspectFill"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="/images/banner3.jpg" mode="aspectFill"/>
+    </swiper-item>
+  </swiper>
+
+  <!-- 学校简介 -->
+  <view class="card">
+    <view class="school-header">
+      <image class="school-logo" src="/images/logo.png"/>
+      <view class="school-info">
+        <view class="title">XX大学</view>
+        <view class="subtitle">博学笃行 厚德载物</view>
+      </view>
+    </view>
+    <rich-text class="text" nodes="{{schoolIntro}}"/>
+  </view>
+
+  <!-- 快速导航 -->
+  <view class="card">
+    <view class="title">快速导航</view>
+    <view class="nav-grid">
+      <navigator url="/pages/news/news" class="nav-item">
+        <image src="/images/icon-news.png"/>
+        <text>校园新闻</text>
+      </navigator>
+      <navigator url="/pages/scenery/scenery" class="nav-item">
+        <image src="/images/icon-scenery.png"/>
+        <text>风光设施</text>
+      </navigator>
+      <navigator url="/pages/message/message" class="nav-item">
+        <image src="/images/icon-message.png"/>
+        <text>留言互动</text>
+      </navigator>
+    </view>
+  </view>
+</view>

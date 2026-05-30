@@ -1,0 +1,22 @@
+<!-- 图片预览页 -->
+<view class="preview-container">
+  <swiper
+    class="swiper"
+    current="{{currentIndex}}"
+    bindchange="onSwiperChange"
+    circular="{{false}}"
+  >
+    <swiper-item wx:for="{{images}}" wx:key="index">
+      <view class="swiper-item" bindtap="onTap">
+        <image
+          src="{{item}}"
+          mode="aspectFit"
+          class="preview-image"
+          bindload="onImageLoad"
+        />
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="indicator">{{currentIndex + 1}} / {{images.length}}</view>
+  <view class="name-label">{{currentName}}</view>
+</view>

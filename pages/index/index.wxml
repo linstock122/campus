@@ -1,46 +1,41 @@
 <!-- 首页 - 成员A负责 -->
 <view class="container">
   <!-- 轮播图 -->
-  <swiper class="swiper" indicator-dots autoplay interval="3000" duration="500">
-    <swiper-item>
-      <image src="/images/banner1.jpg" mode="aspectFill"/>
-    </swiper-item>
-    <swiper-item>
-      <image src="/images/banner2.jpg" mode="aspectFill"/>
-    </swiper-item>
-    <swiper-item>
-      <image src="/images/banner3.jpg" mode="aspectFill"/>
+  <swiper class="swiper" indicator-dots autoplay interval="3000" duration="500" circular>
+    <swiper-item wx:for="{{swiperList}}" wx:key="id" bindtap="onSwiperTap" data-index="{{index}}">
+      <image src="{{item.image}}" mode="aspectFill"/>
+      <view class="swiper-title">{{item.title}}</view>
     </swiper-item>
   </swiper>
 
   <!-- 学校简介 -->
-  <view class="card">
+  <view class="card school-card">
     <view class="school-header">
-      <image class="school-logo" src="/images/logo.png"/>
+      <image class="school-logo" src="{{schoolInfo.logo}}" mode="aspectFit"/>
       <view class="school-info">
-        <view class="title">XX大学</view>
-        <view class="subtitle">博学笃行 厚德载物</view>
+        <view class="school-name">{{schoolInfo.name}}</view>
+        <view class="school-motto">{{schoolInfo.motto}}</view>
       </view>
     </view>
-    <rich-text class="text" nodes="{{schoolIntro}}"/>
+    <view class="school-intro">
+      <rich-text nodes="{{schoolInfo.intro}}"/>
+    </view>
   </view>
 
   <!-- 快速导航 -->
-  <view class="card">
-    <view class="title">快速导航</view>
+  <view class="card nav-card">
+    <view class="section-title">快速导航</view>
     <view class="nav-grid">
-      <navigator url="/pages/news/news" class="nav-item">
-        <image src="/images/icon-news.png"/>
-        <text>校园新闻</text>
-      </navigator>
-      <navigator url="/pages/scenery/scenery" class="nav-item">
-        <image src="/images/icon-scenery.png"/>
-        <text>风光设施</text>
-      </navigator>
-      <navigator url="/pages/message/message" class="nav-item">
-        <image src="/images/icon-message.png"/>
-        <text>留言互动</text>
-      </navigator>
+      <view class="nav-item" wx:for="{{navList}}" wx:key="id" bindtap="onNavTap" data-url="{{item.url}}">
+        <image class="nav-icon" src="{{item.icon}}" mode="aspectFit"/>
+        <text class="nav-name">{{item.name}}</text>
+      </view>
     </view>
+  </view>
+
+  <!-- 学校简介详情 -->
+  <view class="card detail-card">
+    <view class="section-title">学校概况</view>
+    <rich-text class="detail-content" nodes="<p>学校位于浙江省杭州市，现有南浔和钱塘两个校区，占地面积约1500余亩。设有水利与环境工程学院、建筑工程学院、信息工程学院等10余个教学单位。</p><p>学校坚持'应用型、地方性'办学定位，致力于培养高素质应用型人才，为浙江省乃至全国的水利水电事业和经济社会发展做出了重要贡献。</p>"/>
   </view>
 </view>

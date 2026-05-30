@@ -1,25 +1,54 @@
 <!-- 风光设施页 - 成员B负责 -->
 <view class="container">
-  <view class="title">校园风光</view>
-  
-  <!-- 图片网格 -->
-  <view class="image-grid">
-    <view 
-      class="scenery-item {{item.isOpen ? '' : 'closed'}}" 
-      wx:for="{{sceneryList}}" 
-      wx:key="id"
-      bindtap="{{item.isOpen ? 'previewImage' : ''}}"
-      data-index="{{index}}"
-    >
-      <image src="{{item.image}}" mode="aspectFill"/>
-      <view class="scenery-info">
-        <view class="scenery-name">{{item.name}}</view>
-        <view class="scenery-status">
-          <text class="tag {{item.isOpen ? 'tag-open' : 'tag-close'}}">
-            {{item.isOpen ? '开放' : '关闭'}}
-          </text>
+  <!-- 校园风光 -->
+  <view class="section">
+    <view class="section-title">校园风光</view>
+    <view class="image-grid">
+      <view
+        class="grid-item"
+        wx:for="{{sceneryList}}"
+        wx:key="id"
+        data-index="{{index}}"
+        bindtap="previewImage"
+      >
+        <image src="{{item.image}}" mode="aspectFill"/>
+        <view class="item-info">
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-desc">{{item.description}}</text>
         </view>
-        <view class="scenery-desc">{{item.description}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 校园设施 -->
+  <view class="section">
+    <view class="section-title">校园设施</view>
+    <view class="image-grid">
+      <view
+        class="grid-item facility-item {{item.isOpen ? '' : 'closed'}}"
+        wx:for="{{facilitiesList}}"
+        wx:key="id"
+      >
+        <image
+          src="{{item.image}}"
+          mode="aspectFill"
+          data-index="{{index}}"
+          bindtap="previewFacilityImage"
+        />
+        <view
+          class="item-info"
+          data-id="{{item.id}}"
+          bindtap="goFacilityDetail"
+        >
+          <view class="facility-header">
+            <text class="item-name">{{item.name}}</text>
+            <text class="tag {{item.isOpen ? 'tag-open' : 'tag-close'}}">
+              {{item.isOpen ? '开放' : '关闭'}}
+            </text>
+          </view>
+          <text class="item-desc">{{item.description}}</text>
+          <text class="item-time">开放时间：{{item.openTime}}</text>
+        </view>
       </view>
     </view>
   </view>

@@ -1,0 +1,40 @@
+<!-- 校园地图页 -->
+<view class="container">
+  <!-- 校区切换 -->
+  <view class="campus-tabs">
+    <view
+      class="tab {{activeCampus === index ? 'tab-active' : ''}}"
+      wx:for="{{campusList}}"
+      wx:key="id"
+      data-index="{{index}}"
+      bindtap="switchCampus"
+    >
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+  <!-- 地图 -->
+  <map
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    show-location
+    bindmarkertap="markertap"
+  />
+
+  <!-- 校区信息 -->
+  <view class="campus-info">
+    <view class="info-card" wx:for="{{campusList}}" wx:key="id">
+      <view class="info-header">
+        <text class="info-name">{{item.name}}</text>
+        <view class="nav-btn" data-index="{{index}}" bindtap="openNavigation">
+          <text>导航</text>
+        </view>
+      </view>
+      <text class="info-address">📍 {{item.address}}</text>
+      <text class="info-desc">{{item.description}}</text>
+    </view>
+  </view>
+</view>

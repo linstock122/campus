@@ -1,0 +1,37 @@
+<!-- 设施页面 - 图书馆和体育馆 -->
+<view class="container">
+  <view class="title">校园设施</view>
+
+  <!-- 设施列表 -->
+  <view class="facilities-list">
+    <view
+      class="facility-item {{item.isOpen ? '' : 'closed'}}"
+      wx:for="{{facilitiesList}}"
+      wx:key="id"
+    >
+      <image src="{{item.image}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"/>
+      <view class="facility-info">
+        <view class="facility-header">
+          <view class="facility-name">{{item.name}}</view>
+          <text class="tag {{item.isOpen ? 'tag-open' : 'tag-close'}}">
+            {{item.isOpen ? '开放中' : '已关闭'}}
+          </text>
+        </view>
+        <view class="facility-location">{{item.location}}</view>
+        <view class="facility-time">
+          <text class="time-label">开放时间：</text>
+          <text class="time-value">{{item.openTime}}</text>
+        </view>
+        <view class="facility-notice" wx:if="{{item.notice}}">
+          <text class="notice-icon">!</text>
+          <text class="notice-text">{{item.notice}}</text>
+        </view>
+        <view class="facility-desc">{{item.description}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tip" wx:if="{{facilitiesList.length === 0}}">
+    <text>暂无设施信息</text>
+  </view>
+</view>

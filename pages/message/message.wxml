@@ -1,46 +1,79 @@
 <!-- 留言页 - 成员C负责 -->
 <view class="container">
   <!-- 留言表单 -->
-  <view class="card">
-    <view class="title">发表留言</view>
+  <view class="card form-card">
+    <view class="section-title">✏️ 发表留言</view>
     <form bindsubmit="submitMessage">
       <view class="form-item">
-        <text class="form-label">姓名</text>
-        <input class="form-input" name="name" placeholder="请输入姓名" value="{{form.name}}"/>
+        <text class="form-label">姓名 *</text>
+        <input 
+          class="form-input" 
+          name="name" 
+          placeholder="请输入您的姓名（2-20字）" 
+          value="{{form.name}}"
+          maxlength="20"
+        />
       </view>
       
       <view class="form-item">
         <text class="form-label">位置</text>
-        <input class="form-input" name="location" placeholder="请输入您的位置" value="{{form.location}}"/>
+        <input 
+          class="form-input" 
+          name="location" 
+          placeholder="请输入您的位置（可选）" 
+          value="{{form.location}}"
+          maxlength="50"
+        />
       </view>
       
       <view class="form-item">
-        <text class="form-label">留言内容</text>
-        <textarea class="form-textarea" name="content" placeholder="请输入留言内容" value="{{form.content}}"/>
+        <text class="form-label">留言内容 *</text>
+        <textarea 
+          class="form-textarea" 
+          name="content" 
+          placeholder="请输入留言内容（5-500字）" 
+          value="{{form.content}}"
+          maxlength="500"
+        />
       </view>
       
-      <button class="btn" form-type="submit">提交留言</button>
+      <button class="btn submit-btn" form-type="submit">提交留言</button>
     </form>
   </view>
 
   <!-- 留言列表 -->
-  <view class="card">
-    <view class="title">留言列表</view>
+  <view class="card list-card" wx:if="{{messages.length > 0}}">
+    <view class="section-title">
+      💬 留言列表
+      <text class="count">（{{messages.length}}条）</text>
+    </view>
     <view class="message-list">
       <view class="message-item" wx:for="{{messages}}" wx:key="id">
         <view class="message-header">
-          <text class="message-name">{{item.name}}</text>
-          <text class="message-time">{{item.time}}</text>
+          <view class="message-user">
+            <text class="message-name">{{item.name}}</text>
+            <text class="message-location">📍 {{item.location}}</text>
+          </view>
+          <view class="message-actions">
+            <text class="message-time">{{item.time}}</text>
+            <text class="delete-btn" bindtap="deleteMessage" data-id="{{item.id}}">删除</text>
+          </view>
         </view>
-        <view class="message-location">📍 {{item.location}}</view>
         <view class="message-content">{{item.content}}</view>
       </view>
     </view>
+    <view class="clear-btn" bindtap="clearAllMessages">
+      <text>🗑️ 清空所有留言</text>
+    </view>
+  </view>
+
+  <view class="card empty-card" wx:if="{{messages.length === 0}}">
+    <view class="empty-text">暂无留言，快来发表第一条吧！</view>
   </view>
 
   <!-- 小组介绍 -->
-  <view class="card">
-    <view class="title">关于我们</view>
+  <view class="card team-card">
+    <view class="section-title">👥 关于我们</view>
     <rich-text nodes="{{teamIntro}}"/>
   </view>
 </view>

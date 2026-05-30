@@ -5,12 +5,14 @@
     "pages/news-detail/news-detail",
     "pages/scenery/scenery",
     "pages/scenery-detail/scenery-detail",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/map/map",
+    "pages/image-preview/image-preview"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1AAD19",
-    "navigationBarTitleText": "校园导览",
+    "navigationBarTitleText": "浙江水利水电学院",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -33,9 +35,15 @@
       },
       {
         "pagePath": "pages/scenery/scenery",
-        "text": "风光",
+        "text": "风光设施",
         "iconPath": "images/scenery.png",
         "selectedIconPath": "images/scenery-active.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图",
+        "iconPath": "images/map.png",
+        "selectedIconPath": "images/map-active.png"
       },
       {
         "pagePath": "pages/message/message",
@@ -45,6 +53,15 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于在地图页面显示您的位置，方便导航到学校"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

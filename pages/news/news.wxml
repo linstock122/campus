@@ -1,20 +1,22 @@
 <!-- 新闻列表页 - 成员A负责 -->
+<import src="/templates/news-item.wxml"/>
+
 <view class="container">
   <view class="news-list">
-    <view class="news-item" wx:for="{{newsList}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
-      <image class="news-image" src="{{item.image}}" mode="aspectFill"/>
-      <view class="news-content">
-        <view class="news-title">{{item.title}}</view>
-        <view class="news-meta">
-          <text class="news-time">{{item.time}}</text>
-          <text class="news-views">👁 {{item.views}}</text>
-        </view>
-        <view class="news-summary">{{item.summary}}</view>
-      </view>
-    </view>
+    <template is="newsItem" wx:for="{{displayList}}" wx:key="id" data="{{...item}}"/>
   </view>
   
   <!-- 加载更多 -->
-  <view class="load-more" wx:if="{{hasMore}}" bindtap="loadMore">加载更多</view>
-  <view class="no-more" wx:else>没有更多了</view>
+  <view class="load-more" wx:if="{{hasMore && !isLoading}}" bindtap="loadMore">
+    <text>点击加载更多</text>
+  </view>
+  <view class="loading" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="no-more" wx:if="{{!hasMore && displayList.length > 0}}">
+    <text>— 没有更多了 —</text>
+  </view>
+  <view class="empty" wx:if="{{displayList.length === 0 && !isLoading}}">
+    <text>暂无新闻</text>
+  </view>
 </view>

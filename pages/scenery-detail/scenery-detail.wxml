@@ -1,0 +1,38 @@
+<!-- 风光设施详情页 -->
+<view class="container">
+  <!-- 顶部大图 -->
+  <image class="detail-image" src="{{item.image}}" mode="aspectFill" bindtap="previewImage"/>
+
+  <view class="detail-info">
+    <!-- 名称和状态 -->
+    <view class="detail-header">
+      <view class="detail-name">{{item.name}}</view>
+      <text class="tag {{item.isOpen ? 'tag-open' : 'tag-close'}}">
+        {{item.isOpen ? '开放' : '关闭'}}
+      </text>
+    </view>
+
+    <!-- 位置 -->
+    <view class="info-row" wx:if="{{item.location}}">
+      <text class="info-label">位置：</text>
+      <text class="info-value">{{item.location}}</text>
+    </view>
+
+    <!-- 开放时间 -->
+    <view class="info-row" wx:if="{{item.openTime}}">
+      <text class="info-label">开放时间：</text>
+      <text class="info-value highlight">{{item.openTime}}</text>
+    </view>
+
+    <!-- 描述 -->
+    <view class="detail-desc">
+      <text>{{item.description}}</text>
+    </view>
+
+    <!-- 注意事项 -->
+    <view class="notice-box" wx:if="{{item.notice}}">
+      <text class="notice-title">注意事项</text>
+      <text class="notice-text">{{item.notice}}</text>
+    </view>
+  </view>
+</view>

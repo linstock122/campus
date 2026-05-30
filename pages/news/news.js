@@ -1,33 +1,43 @@
 // 新闻列表页 - 成员A负责
+const app = getApp();
+
 Page({
   data: {
-    newsList: [],
+    // 当前显示的新闻列表（分页）
+    displayList: [],
     page: 1,
-    hasMore: true
+    pageSize: 5,
+    hasMore: true,
+    isLoading: false
   },
 
   onLoad() {
     this.loadNews();
   },
 
-  // 加载新闻列表
+  // 加载新闻（分页）
   loadNews() {
-    // 从本地存储获取
-    const allNews = wx.getStorageSync('newsList') || [];
-    const pageSize = 5;
-    const start = (this.data.page - 1) * pageSize;
-    const end = start + pageSize;
-    const news = allNews.slice(start, end);
-    
-    this.setData({
-      newsList: this.data.page === 1 ? news : [...this.data.newsList, ...news],
-      hasMore: end < allNews.length
-    });
+    if (this.data.isLoading) return;
+    this.setData({ isLoading: true });
+
+    setTimeout(() => {
+      const allNews = app.globalData.newsList || [];
+      const { page, pageSize } = this.data;
+      const start = 0;
+      const end = page * pageSize;
+      const news = allNews.slice(start, end);
+
+      this.setData({
+        displayList: news,
+        hasMore: end < allNews.length,
+        isLoading: false
+      });
+    }, 300);
   },
 
-  // 加载更多
+  // 触底加载更多
   loadMore() {
-    if (!this.data.hasMore) return;
+    if (!this.data.hasMore || this.data.isLoading) return;
     this.setData({ page: this.data.page + 1 });
     this.loadNews();
   },
@@ -43,5 +53,12 @@ Page({
   // 触底加载
   onReachBottom() {
     this.loadMore();
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.setData({ page: 1, hasMore: true });
+    this.loadNews();
+    wx.stopPullDownRefresh();
   }
 });

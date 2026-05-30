@@ -1,0 +1,15 @@
+<!-- 新闻列表项模板 -->
+<template name="newsItem">
+  <view class="news-item" bindtap="goDetail" data-id="{{id}}">
+    <image class="news-image" src="{{image}}" mode="aspectFill"/>
+    <view class="news-content">
+      <view class="news-title">{{title}}</view>
+      <view class="news-meta">
+        <text class="news-date">{{date}}</text>
+        <text class="news-source">{{source}}</text>
+        <text class="news-views">👁 {{views}}</text>
+      </view>
+      <view class="news-summary">{{summary}}</view>
+    </view>
+  </view>
+</template>

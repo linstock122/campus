@@ -1,0 +1,20 @@
+<!-- 新闻详情页 - 成员A负责 -->
+<view class="container">
+  <view class="news-header">
+    <view class="news-title">{{news.title}}</view>
+    <view class="news-meta">
+      <text class="news-time">{{news.time}}</text>
+      <text class="news-views">👁 {{news.views}}</text>
+    </view>
+  </view>
+  
+  <image class="news-image" src="{{news.image}}" mode="widthFix"/>
+  
+  <view class="news-content">
+    <rich-text nodes="{{news.content}}"/>
+  </view>
+  
+  <view class="news-footer">
+    <text>阅读量：{{news.views}}</text>
+  </view>
+</view>
